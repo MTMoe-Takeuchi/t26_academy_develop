@@ -59,8 +59,7 @@ public class BookMstService {
         book.setIsbn(bookMstDto.getIsbn());
         // データベースへの保存
         this.bookMstRepository.save(book);
-        // ログを残す
-        // 正常に処理が完了した場合はtrueを返す
+        // ログを残す 正常に処理が完了した場合はtrueを返す
         return true;
     }
     // ここまで追加した

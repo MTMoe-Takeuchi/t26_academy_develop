@@ -47,7 +47,6 @@ public class BookController {
         if (!model.containsAttribute("bookMstDto")) {
             model.addAttribute("bookMstDto", new BookMstDto());
         }
-
         return "book/add";
     }
 
@@ -65,6 +64,5 @@ public class BookController {
             return "redirect:/book/index";
         }
     }
-
     // ここまで追加しました
 }
