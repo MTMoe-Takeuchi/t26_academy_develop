@@ -48,21 +48,20 @@ public class BookMstService {
      * BookMstDtoで入力された書籍情報
      */
     @Transactional
-    public void save(BookMstDto bookMstDto) {
-
-        try {
-            // DB用オブジェクト作成
-            BookMst book = new BookMst();
-            book.setTitle(bookMstDto.getTitle());
-            book.setIsbn(bookMstDto.getIsbn());
-
-            // データベースへの保存
-            this.bookMstRepository.save(book);
-            // ログを残す
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
+    public boolean save(BookMstDto bookMstDto) {
+        if (bookMstDto == null || bookMstDto.getTitle() == null || bookMstDto.getTitle().isEmpty()) {
+            // 不正なデータの場合はfalseを返し、保存処理を行わない
+            return false;
         }
-        // ここまで追加した
+        // DB用オブジェクト作成
+        BookMst book = new BookMst();
+        book.setTitle(bookMstDto.getTitle());
+        book.setIsbn(bookMstDto.getIsbn());
+        // データベースへの保存
+        this.bookMstRepository.save(book);
+        // ログを残す
+        // 正常に処理が完了した場合はtrueを返す
+        return true;
     }
+    // ここまで追加した
 }

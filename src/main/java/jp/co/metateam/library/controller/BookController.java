@@ -54,16 +54,17 @@ public class BookController {
     // ここから追加
     @PostMapping("/book/add")
     public String add(BookMstDto bookMstDto) {
-       try {
-           // 保存処理
-           this.bookMstService.save(bookMstDto);
-           // 保存できたら一覧へ遷移
-           return "/book/index";
-       } 
-       catch (Exception e) {
-           return "redirect:/book/index";
-       }
-   }
+        // Serviceの処理結果を受け取る
+        boolean isSaved = this.bookMstService.save(bookMstDto);
+        
+        if (isSaved) {
+            // 保存できたら一覧へ遷移
+            return "/book/index";
+        } else {
+            // 保存失敗
+            return "redirect:/book/index";
+        }
+    }
 
     // ここまで追加しました
 }
