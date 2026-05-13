@@ -13,14 +13,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BookMstDto {
-    
-    private Long id; 
-    
+    private Long id;
+
+    // ここから追加します ISBNのバリデーション（必須、13桁）
+    @NotEmpty(message = "ISBNは必須です")
+    @Size(max = 13, message = "ISBNは13字で入力してください")
     private String isbn;
 
+    // 書籍名のバリデーション（必須、255字以下）
+    @NotEmpty(message = "書籍名は必須です")
+    @Size(max = 255, message = "書籍名は255字以下で入力してください")
     private String title;
-    
     private Timestamp deletedAt;
-
     private BookMst bookMst;
+
+    // ここまで追加しました
 }
